@@ -26,10 +26,14 @@ describe('give-me-diff', function() {
   });
 
   it('should compare when right has more properties', function() {
-    var left = {name: 'Andres'};
+    var left = {
+      foo: true,
+      name: 'Andres'
+    };
     var right = {
       name: 'andres',
-      tel: 123
+      tel: 123,
+      foo: true
     };
 
     expect(diff.compare(left, right)).toEqual('Diff:\n\n' +
