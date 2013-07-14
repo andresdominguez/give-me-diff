@@ -12,6 +12,6 @@ describe('give-me-diff', function() {
     expect(diff.compare(left, right)).toEqual(
         'Expected: {"name":"Andres"} to equal: {"name":"andres"}\n\n' +
             'Diff:\n\n' +
-            'name: "Andres"|"andres');
+            'name: Andres|andres');
   });
 });
