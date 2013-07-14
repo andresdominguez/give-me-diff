@@ -1,0 +1,7 @@
+{
+  "name": "give-me-diff",
+  "version": "0.0.0",
+  "devDependencies": {
+    "underscore": "~1.5.1"
+  }
+}
