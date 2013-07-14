@@ -5,19 +5,9 @@ giveMeDiff.Diff = function() {
 };
 
 giveMeDiff.Diff.prototype.compare = function(left, right) {
-  var difference = [];
+  var difference = this.areEqual(left, right);
 
-  var allEqual = _.all(left, function(value, key) {
-    var isEqual = _.isEqual(value, right[key]);
-
-    if (!isEqual) {
-      difference.push(key);
-    }
-
-    return isEqual;
-  });
-
-  if (!allEqual) {
+  if (difference.length) {
     var error = 'Expected: ' + JSON.stringify(left) +
         ' to equal: ' + JSON.stringify(right) + '\n\n' +
         'Diff:\n\n';
@@ -28,4 +18,19 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
 
     return  error;
   }
+};
+
+giveMeDiff.Diff.prototype.areEqual = function(left, right) {
+  var difference = [];
+  _.all(left, function(value, key) {
+    var isEqual = _.isEqual(value, right[key]);
+
+    if (!isEqual) {
+      difference.push(key);
+    }
+
+    return isEqual;
+  });
+
+  return difference;
 };
