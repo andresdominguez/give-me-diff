@@ -11,7 +11,7 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
     var error = 'Diff:\n\n';
 
     _.each(difference, function(property) {
-      error += property + ': ' + left[property] + '|' + right[property];
+      error += property + ': ' + left[property] + '|' + right[property] + '\n';
     });
 
     return  error;

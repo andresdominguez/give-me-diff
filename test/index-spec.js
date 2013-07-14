@@ -10,7 +10,7 @@ describe('give-me-diff', function() {
     var right = {name: 'andres'};
 
     expect(diff.compare(left, right)).toEqual('Diff:\n\n' +
-        'name: Andres|andres');
+        'name: Andres|andres\n');
   });
 
   it('should return undefined when object are equal', function() {
