@@ -9,10 +9,8 @@ describe('give-me-diff', function() {
     var left = {name: 'Andres'};
     var right = {name: 'andres'};
 
-    expect(diff.compare(left, right)).toEqual(
-        'Expected: {"name":"Andres"} to equal: {"name":"andres"}\n\n' +
-            'Diff:\n\n' +
-            'name: Andres|andres');
+    expect(diff.compare(left, right)).toEqual('Diff:\n\n' +
+        'name: Andres|andres');
   });
 
   it('should return undefined when object are equal', function() {
