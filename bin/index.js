@@ -20,12 +20,13 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
 
 giveMeDiff.Diff.prototype.areEqual = function(left, right) {
   var difference = [];
-  _.each(left, function(value, key) {
-    if (!_.isEqual(value, right[key])) {
-      difference.push(key);
-    }
 
-    return _.isEqual(value, right[key]);
+  var allKeys = _.uniq(_.keys(left).concat(_.keys(right)));
+
+  _.each(allKeys, function(property) {
+    if (!_.isEqual(left[property], right[property])) {
+      difference.push(property);
+    }
   });
 
   return difference;
