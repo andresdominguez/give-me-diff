@@ -11,6 +11,7 @@ files = [
   JASMINE,
   JASMINE_ADAPTER,
   'bin/*.js',
+  'components/underscore/underscore.js',
   'test/**/*-spec.js'
 ];
 
