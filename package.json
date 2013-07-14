@@ -1,0 +1,24 @@
+{
+  "name": "give-me-diff",
+  "version": "0.0.1",
+  "description": "Compare two javascript objects and print a pretty diff",
+  "main": "bin/index.js",
+  "bin": {
+    "give-me-diff": "index.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andresdominguez/give-me-diff.git"
+  },
+  "author": "Andres Dominguez",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/andresdominguez/give-me-diff/issues"
+  }
+}
