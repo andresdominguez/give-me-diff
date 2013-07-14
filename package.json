@@ -20,5 +20,8 @@
   "license": "BSD",
   "bugs": {
     "url": "https://github.com/andresdominguez/give-me-diff/issues"
+  },
+  "devDependencies": {
+    "bower": "~0.10.0"
   }
 }
