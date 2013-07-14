@@ -14,4 +14,8 @@ describe('give-me-diff', function() {
             'Diff:\n\n' +
             'name: Andres|andres');
   });
+
+  it('should return undefined when object are equal', function() {
+    expect(diff.compare({name: 'foo'}, {name: 'foo'})).toBeUndefined();
+  });
 });
