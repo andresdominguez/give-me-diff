@@ -7,7 +7,7 @@ giveMeDiff.Diff = function() {
 };
 
 giveMeDiff.Diff.prototype.compare = function(left, right) {
-  var difference = this.areEqual('', left, right);
+  var difference = this.deepCompare('', left, right);
 
 
   if (difference.length) {
@@ -25,7 +25,7 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
   }
 };
 
-giveMeDiff.Diff.prototype.areEqual = function(parentProperty, left, right) {
+giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
   var difference = [];
 
   var allKeys = _.uniq(_.keys(left).concat(_.keys(right)));
