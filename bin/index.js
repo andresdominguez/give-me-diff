@@ -18,11 +18,15 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
 giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
   var difference = [];
 
+  // Get all the properties of both left and right.
   var allKeys = _.uniq(_.keys(left).concat(_.keys(right)));
 
   _.each(allKeys, function(property) {
-    if (!_.isEqual(left[property], right[property])) {
-      var diffString = this.getDiffString(property, left[property], right[property]);
+    var leftValue = left[property];
+    var rightValue = right[property];
+
+    if (!_.isEqual(leftValue, rightValue)) {
+      var diffString = this.getDiffString(property, leftValue, rightValue);
       difference.push(diffString);
     }
   }, this);
