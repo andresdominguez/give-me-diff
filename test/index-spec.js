@@ -62,4 +62,23 @@ describe('give-me-diff', function() {
 
     expect(diff.compare(left, right)).toBeUndefined();
   });
+
+  it('should find deep diff', function() {
+    var left = {
+      address: {
+        street: 'Fifth',
+        zip: 12345
+      }
+    };
+
+    var right = {
+      address: {
+        street: 'the fifth',
+        zip: 12345
+      }
+    };
+
+    expect(diff.compare(left, right)).toBe('Diff:\n\n' +
+        'address.street: Fifth|the fifth');
+  });
 });
