@@ -7,7 +7,7 @@ giveMeDiff.Diff = function() {
 };
 
 giveMeDiff.Diff.prototype.compare = function(left, right) {
-  var difference = this.areEqual(left, right);
+  var difference = this.areEqual('', left, right);
 
 
   if (difference.length) {
@@ -17,7 +17,7 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
       var leftProperty = left[property];
       var rightProperty = right[property];
 
-      error += this.getDiff(property, leftProperty, rightProperty);
+      error += this.getDiffString(property, leftProperty, rightProperty);
 
     }, this);
 
@@ -25,11 +25,7 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
   }
 };
 
-giveMeDiff.Diff.prototype.getDiff = function(property, left, right) {
-  return property + ': ' + left + '|' + right + '\n';
-};
-
-giveMeDiff.Diff.prototype.areEqual = function(left, right) {
+giveMeDiff.Diff.prototype.areEqual = function(parentProperty, left, right) {
   var difference = [];
 
   var allKeys = _.uniq(_.keys(left).concat(_.keys(right)));
@@ -41,4 +37,11 @@ giveMeDiff.Diff.prototype.areEqual = function(left, right) {
   });
 
   return difference;
+};
+
+giveMeDiff.Diff.prototype.getDiffString = function(property, left, right) {
+  var l = _.isObject(left);
+  var r = _.isObject(right);
+
+  return property + ': ' + left + '|' + right + '\n';
 };
