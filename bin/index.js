@@ -3,16 +3,12 @@
 var giveMeDiff = {};
 
 giveMeDiff.Diff = function() {
-
 };
 
 giveMeDiff.Diff.prototype.compare = function(left, right) {
   var difference = this.deepCompare('', left, right);
 
-
   if (difference.length) {
-    var error = 'Diff:\n\n';
-
     return _.reduce(difference, function(memory, diffString) {
       return memory + diffString;
     }, 'Diff:\n\n');
