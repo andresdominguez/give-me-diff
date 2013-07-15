@@ -25,6 +25,7 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
     var leftValue = left[property];
     var rightValue = right[property];
 
+    // Values are the same, go to the next property.
     if (_.isEqual(leftValue, rightValue)) {
       return;
     }
