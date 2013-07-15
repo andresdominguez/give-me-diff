@@ -13,15 +13,9 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
   if (difference.length) {
     var error = 'Diff:\n\n';
 
-    _.each(difference, function(property) {
-      var leftProperty = left[property];
-      var rightProperty = right[property];
-
-      error += this.getDiffString(property, leftProperty, rightProperty);
-
-    }, this);
-
-    return  error;
+    return _.reduce(difference, function(memory, diffString) {
+      return memory += diffString;
+    }, 'Diff:\n\n');
   }
 };
 
@@ -32,9 +26,10 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
 
   _.each(allKeys, function(property) {
     if (!_.isEqual(left[property], right[property])) {
-      difference.push(property);
+      var diffString = this.getDiffString(property, left[property], right[property]);
+      difference.push(diffString);
     }
-  });
+  }, this);
 
   return difference;
 };
