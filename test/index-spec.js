@@ -44,4 +44,22 @@ describe('give-me-diff', function() {
   it('should return undefined when object are equal', function() {
     expect(diff.compare({name: 'foo'}, {name: 'foo'})).toBeUndefined();
   });
+
+  it('should equals with deep compare', function() {
+    var left = {
+      address: {
+        street: 'Fifth',
+        zip: 12345
+      }
+    };
+
+    var right = {
+      address: {
+        street: 'Fifth',
+        zip: 12345
+      }
+    };
+
+    expect(diff.compare(left, right)).toBeUndefined();
+  });
 });
