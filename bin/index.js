@@ -14,7 +14,7 @@ giveMeDiff.Diff.prototype.compare = function(left, right) {
     var error = 'Diff:\n\n';
 
     return _.reduce(difference, function(memory, diffString) {
-      return memory += diffString;
+      return memory + diffString;
     }, 'Diff:\n\n');
   }
 };
