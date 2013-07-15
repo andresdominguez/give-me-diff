@@ -6,7 +6,7 @@ giveMeDiff.Diff = function() {
 };
 
 giveMeDiff.Diff.prototype.compare = function(left, right) {
-  var difference = this.deepCompare('', left, right);
+  var difference = this.deepCompare(null, left, right);
 
   if (difference.length) {
     return _.reduce(difference, function(memory, diffString) {
@@ -25,8 +25,16 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
     var leftValue = left[property];
     var rightValue = right[property];
 
-    if (!_.isEqual(leftValue, rightValue)) {
+    if (_.isEqual(leftValue, rightValue)) {
+      return;
+    }
+
+    if (_.isObject(leftValue) || _.isObject(rightValue)) {
+      var compareItems = this.deepCompare(property, leftValue, rightValue);
+      difference = difference.concat(compareItems);
+    } else {
       var diffString = this.getDiffString(property, leftValue, rightValue);
+      diffString = parentProperty ? parentProperty + '.' + diffString : diffString;
       difference.push(diffString);
     }
   }, this);

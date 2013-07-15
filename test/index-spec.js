@@ -79,6 +79,6 @@ describe('give-me-diff', function() {
     };
 
     expect(diff.compare(left, right)).toBe('Diff:\n\n' +
-        'address.street: Fifth|the fifth');
+        'address.street: Fifth|the fifth\n');
   });
 });
