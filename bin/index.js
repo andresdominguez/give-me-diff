@@ -30,6 +30,7 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
       return;
     }
 
+    // If any of the property values is an object do a recursive diff.
     if (_.isObject(leftValue) || _.isObject(rightValue)) {
       var compareItems = this.deepCompare(property, leftValue, rightValue);
       difference = difference.concat(compareItems);
@@ -44,8 +45,5 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
 };
 
 giveMeDiff.Diff.prototype.getDiffString = function(property, left, right) {
-  var l = _.isObject(left);
-  var r = _.isObject(right);
-
   return property + ': ' + left + '|' + right + '\n';
 };
