@@ -85,4 +85,18 @@ describe('give-me-diff', function() {
         'address.street: Fifth|the fifth\n' +
         'company.name: [object Object]|undefined\n');
   });
+
+  it('should get properties', function() {
+    var one = {
+      one: 1,
+      two: 2
+    };
+    var two = {
+      three: 3,
+      one: 1
+    };
+    var three = 'the three';
+
+    expect(diff.getProperties(one, two, three)).toEqual(['one', 'two', 'three'])
+  });
 });
