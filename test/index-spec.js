@@ -68,6 +68,9 @@ describe('give-me-diff', function() {
       address: {
         street: 'Fifth',
         zip: 12345
+      },
+      company: {
+        name: 'Acme'
       }
     };
 
@@ -79,6 +82,7 @@ describe('give-me-diff', function() {
     };
 
     expect(diff.compare(left, right)).toBe('Diff:\n\n' +
-        'address.street: Fifth|the fifth\n');
+        'address.street: Fifth|the fifth\n' +
+        'company.name: [object Object]|undefined\n');
   });
 });

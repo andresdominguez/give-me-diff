@@ -22,11 +22,18 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
   var allKeys = this.getProperties(left, right);
 
   _.each(allKeys, function(property) {
-    var leftValue = left[property];
-    var rightValue = right[property];
+    var leftValue = left && left[property];
+    var rightValue = right && right[property];
 
     // Values are the same, go to the next property.
     if (_.isEqual(leftValue, rightValue)) {
+      return;
+    }
+
+    if (_.isUndefined(left) || _.isUndefined(right)) {
+      var diffString = this.getDiffString(property, left, right);
+      diffString = parentProperty ? parentProperty + '.' + diffString : diffString;
+      difference.push(diffString);
       return;
     }
 
@@ -45,11 +52,17 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
 };
 
 giveMeDiff.Diff.prototype.getProperties = function(var_args) {
-  return _.chain(arguments).
-      map(_.keys).
+  var aaa = _.chain(arguments).
+      map(function(item) {
+        if (_.isObject(item)) {
+          return _.keys(item);
+        }
+      }).
       flatten().
+      filter(_.identity).
       uniq().
-      value()
+      value();
+  return  aaa
 };
 
 giveMeDiff.Diff.prototype.getDiffString = function(property, left, right) {
