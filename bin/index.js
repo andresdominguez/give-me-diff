@@ -52,17 +52,13 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
 };
 
 giveMeDiff.Diff.prototype.getProperties = function(var_args) {
-  var aaa = _.chain(arguments).
-      map(function(item) {
-        if (_.isObject(item)) {
-          return _.keys(item);
-        }
-      }).
+  return _.chain(arguments).
+      filter(_.isObject).
+      values().
+      map(_.keys).
       flatten().
-      filter(_.identity).
       uniq().
       value();
-  return  aaa
 };
 
 giveMeDiff.Diff.prototype.getDiffString = function(property, left, right) {
