@@ -45,13 +45,11 @@ giveMeDiff.Diff.prototype.deepCompare = function(parentProperty, left, right) {
 };
 
 giveMeDiff.Diff.prototype.getProperties = function(var_args) {
-  var props = [];
-
-  _.each(arguments, function(arg) {
-    props = props.concat(_.keys(arg))
-  });
-
-  return _.uniq(props);
+  return _.chain(arguments).
+      map(_.keys).
+      flatten().
+      uniq().
+      value()
 };
 
 giveMeDiff.Diff.prototype.getDiffString = function(property, left, right) {
